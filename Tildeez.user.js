@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       0.2
+// @version       0.3
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -91,6 +91,7 @@ function applyConsistentColorToUserNames () {
 // ---------------- Bookmarks Button ------------------
 function addBookmarksLink() {
   const bookmarksLink = document.createElement('a')
+  bookmarksLink.className = "links-group"
   const bookmarksLinkText = document.createTextNode('Bookmarks')
   bookmarksLink.setAttribute('href', "https://tildes.net/bookmarks")
   bookmarksLink.appendChild(bookmarksLinkText)
