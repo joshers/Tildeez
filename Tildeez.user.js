@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       0.1
+// @version       0.2
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -88,31 +88,6 @@ function applyConsistentColorToUserNames () {
   }
 }
 
-// ---------------- Scroll to top ----------------
-// Function to scroll to the top of the page
-// V2.0 now, looks better, easier to find, shiny
-function scrollToTop () {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-}
-
-// Function to add a scroll-to-top button
-function addScrollToTopButton (homeButton) {
-  const btnGroup = document.querySelector('.btn-group')
-  setupButton(homeButton, '⌂', scrollToTop)
-  homeButton.classList.add('btn', 'btn-sm', 'btn-light')
-  homeButton.style.fontSize = '0.6rem'
-  homeButton.style.color = 'var(--foreground-secondary-color)'
-  homeButton.title = 'Return to Top'
-  try {
-    btnGroup.appendChild(homeButton)
-  } catch (err) {
-    // No btnGroup
-  }
-}
-
 // ---------------- Bookmarks Button ------------------
 function addBookmarksLink() {
   const bookmarksLink = document.createElement('a')
@@ -125,5 +100,4 @@ function addBookmarksLink() {
 }
 
 if (toggleBookmarkLink) { addBookmarksLink() }
-if (toggleScrollToTopButton) { addScrollToTopButton(homeButton) }
 if (toggleUserColors) { applyConsistentColorToUserNames() }
