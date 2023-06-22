@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       0.4
+// @version       0.5
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -18,7 +18,7 @@ const toggleUserColors = true;
 const toggleBookmarkLink = true;
 const toggleScrollToTopButton = true;
 
-GM.addStyle(".bkmk-link:visited { color: var(--link-color); }")
+GM.addStyle("a.bkmk-link:visited { color: var(--link-color); }")
 
 // ---------------- Color Users ----------------
 // Function to generate a random color based on hashed username
