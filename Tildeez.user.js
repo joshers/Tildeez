@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       1.1
+// @version       1.1.1
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -125,7 +125,7 @@ function adjustSidebar() {
   }
 
   const sideBar = document.querySelector('aside#sidebar ul.nav')
-  sideBar.prepend(sidebarHeader, sidebarLinksul)
+  sideBar.prepend(sidebarHeader, sidebarLinksList)
 }
 
 if (toggleUserColors) { applyConsistentColorToUserNames() }
