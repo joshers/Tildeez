@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       0.3
+// @version       0.4
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -9,6 +9,7 @@
 // @downloadURL   https://github.com/joshers/Tildeez/raw/main/Tildeez.user.js
 // @updateURL     https://github.com/joshers/Tildeez/raw/main/Tildeez.user.js
 // @license       GPL-3.0
+// @grant         GM.addStyle
 // ==/UserScript==
 
 // ---------------- Toggles ----------------
@@ -16,6 +17,8 @@
 const toggleUserColors = true;
 const toggleBookmarkLink = true;
 const toggleScrollToTopButton = true;
+
+GM.addStyle(".bkmk-link:visited { color: var(--link-color); }")
 
 // ---------------- Color Users ----------------
 // Function to generate a random color based on hashed username
@@ -91,7 +94,7 @@ function applyConsistentColorToUserNames () {
 // ---------------- Bookmarks Button ------------------
 function addBookmarksLink() {
   const bookmarksLink = document.createElement('a')
-  bookmarksLink.className = "links-group"
+  bookmarksLink.className = "bkmk-link"
   const bookmarksLinkText = document.createTextNode('Bookmarks')
   bookmarksLink.setAttribute('href', "https://tildes.net/bookmarks")
   bookmarksLink.appendChild(bookmarksLinkText)
