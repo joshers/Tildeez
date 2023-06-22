@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Tildeez
 // @namespace     https://github.com/joshers/Tildeez
-// @version       1
+// @version       1.1
 // @description   Adds some extra functionality to http://tildes.net/
 // @author        Joshers (https://github.com/joshers)
 // @match         https://*.tildes.net/*
@@ -14,8 +14,8 @@
 // ---------------- Toggles ----------------
 // Gets values from storage if they exist, else sets everything to true, enabling all functiosn of script.
 const toggleUserColors = true;
-const toggleBookmarkLink = true;
 const toggleScrollToTopButton = true;
+const toggleSideBar = true;
 
 // ---------------- Color Users ----------------
 // Function to generate a random color based on hashed username
@@ -88,17 +88,45 @@ function applyConsistentColorToUserNames () {
   }
 }
 
-// ---------------- Bookmarks Button ------------------
-function addBookmarksLink() {
-  const bookmarksLink = document.createElement('a')
-  bookmarksLink.style.color = "var(--link-color)"
-  const bookmarksLinkText = document.createTextNode('Bookmarks')
-  bookmarksLink.setAttribute('href', "https://tildes.net/bookmarks")
-  bookmarksLink.appendChild(bookmarksLinkText)
-  
-  const siteHeader = document.getElementById('site-header')
-  siteHeader.appendChild(bookmarksLink)
+// ---------------- Custom Sidebar Menu ------------------
+
+function adjustSidebar() {
+  const sidebarHeader = document.createElement('li')
+  const sidebarHeaderText = document.createTextNode('Personal')
+  sidebarHeader.appendChild(sidebarHeaderText)
+
+  const sidebarLinksList = document.createElement('li')
+  const sidebarLinksul = document.createElement('ul')
+  sidebarLinksul.setAttribute("class", "nav nav-group-list")
+  sidebarLinksList.appendChild(sidebarLinksul)
+
+  const tildesUser = document.querySelector('a.logged-in-user-username')
+
+  let sidebarLinks = {
+    "Bookmarks": {
+      "title": "Bookmarks",
+      "url": "https://tildes.net/bookmarks"
+    },
+    "Posts": {
+      "title": "Posts",
+      "url": tildesUser
+    }
+  }
+
+  for (let keys in sidebarLinks){
+    const li = document.createElement('li')
+    li.setAttribute('class', 'nav-item')
+    let sidebarLinkA = document.createElement('a')
+    sidebarLinkA.setAttribute('href', sidebarLinks[keys].url)
+    let sidebarLinkAText = document.createTextNode(sidebarLinks[keys].title)
+    sidebarLinkA.appendChild(sidebarLinkAText)
+    li.appendChild(sidebarLinkA)
+    sidebarLinksul.appendChild(li)
+  }
+
+  const sideBar = document.querySelector('aside#sidebar ul.nav')
+  sideBar.prepend(sidebarHeader, sidebarLinksul)
 }
 
-if (toggleBookmarkLink) { addBookmarksLink() }
 if (toggleUserColors) { applyConsistentColorToUserNames() }
+if (toggleSideBar) { adjustSidebar() }
