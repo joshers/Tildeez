@@ -9,6 +9,7 @@
 // @downloadURL   https://github.com/joshers/Tildeez/raw/main/Tildeez.user.js
 // @updateURL     https://github.com/joshers/Tildeez/raw/main/Tildeez.user.js
 // @license       GPL-3.0
+// ==/UserScript==
 
 // ---------------- Toggles ----------------
 // Gets values from storage if they exist, else sets everything to true, enabling all functiosn of script.
